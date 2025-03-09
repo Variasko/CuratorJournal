@@ -1,0 +1,6 @@
+@CuratorJournal.API_HostAddress = http://localhost:5012
+
+GET {{CuratorJournal.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
