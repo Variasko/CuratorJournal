@@ -1,5 +1,6 @@
-﻿using CuratorJournal.ViewModels;
+﻿using CuratorJournal.Desktop.ViewModels;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace CuratorJournal.Desktop
 {
@@ -14,9 +15,10 @@ namespace CuratorJournal.Desktop
             DataContext = new SignInViewModel();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void PasswordEneter_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            if (this.DataContext != null)
+            { ((SignInViewModel)this.DataContext).Password = ((PasswordBox)sender).Password; }
         }
     }
 }
