@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C8771A29-F335-4C8A-988F-76E7748BFD7C}</ProjectGuid>
+    <ProjectGuid>{900AC8DC-276E-415C-BCC3-BF1ADE32AFBA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CuratorJournal.DataAccess</RootNamespace>
@@ -37,8 +37,8 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.135\lib\net462\Microsoft.Xaml.Behaviors.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -80,6 +80,25 @@
     <Compile Include="Direction.cs">
       <DependentUpon>BaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DTOs\ClassHourDTO.cs" />
+    <Compile Include="DTOs\CuratorCharacteristicDTO.cs" />
+    <Compile Include="DTOs\CuratorDTO.cs" />
+    <Compile Include="DTOs\DirectionDTO.cs" />
+    <Compile Include="DTOs\GroupPostDTO.cs" />
+    <Compile Include="DTOs\HobbyDTO.cs" />
+    <Compile Include="DTOs\IndividualWorkDTO.cs" />
+    <Compile Include="DTOs\ParentDTO.cs" />
+    <Compile Include="DTOs\ParentMeetingDTO.cs" />
+    <Compile Include="DTOs\PersonDTO.cs" />
+    <Compile Include="DTOs\SignInDTO.cs" />
+    <Compile Include="DTOs\SocialStatuDTO.cs" />
+    <Compile Include="DTOs\SpecializationDTO.cs" />
+    <Compile Include="DTOs\StudentClassHourDTO.cs" />
+    <Compile Include="DTOs\StudentDTO.cs" />
+    <Compile Include="DTOs\StudentInDormitoryDTO.cs" />
+    <Compile Include="DTOs\StudyGroupDTO.cs" />
+    <Compile Include="DTOs\TeacherCategoryDTO.cs" />
+    <Compile Include="DTOs\UserDTO.cs" />
     <Compile Include="GroupPost.cs">
       <DependentUpon>BaseModel.tt</DependentUpon>
     </Compile>
@@ -128,18 +147,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
     <EntityDeploy Include="BaseModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>BaseModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
     <None Include="BaseModel.edmx.diagram">
       <DependentUpon>BaseModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="BaseModel.Context.tt">
@@ -152,6 +170,9 @@
       <DependentUpon>BaseModel.edmx</DependentUpon>
       <LastGenOutput>BaseModel.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

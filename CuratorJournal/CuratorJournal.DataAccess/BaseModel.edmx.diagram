@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="49b1bcf6e87c43b3993b9d8721be7c9a" Name="Diagram1">
+      <Diagram DiagramId="4649817affb54533ab0b2266b08d97b9" Name="Diagram1">
         <EntityTypeShape EntityType="CuratorJournalModel.ClassHour" Width="1.5" PointX="6" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="CuratorJournalModel.Curator" Width="1.5" PointX="6" PointY="19.875" IsExpanded="true" />
         <EntityTypeShape EntityType="CuratorJournalModel.CuratorCharacteristic" Width="1.5" PointX="8.25" PointY="8" IsExpanded="true" />

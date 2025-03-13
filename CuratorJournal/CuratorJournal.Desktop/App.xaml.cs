@@ -13,6 +13,5 @@ namespace CuratorJournal.Desktop
     /// </summary>
     public partial class App : Application
     {
-
     }
 }
