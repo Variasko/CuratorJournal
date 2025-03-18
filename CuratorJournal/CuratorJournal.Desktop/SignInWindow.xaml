@@ -7,46 +7,45 @@
         mc:Ignorable="d"
         
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        TextElement.FontWeight="Regular"
-        TextElement.FontSize="25"
-        TextOptions.TextFormattingMode="Ideal"
-        TextOptions.TextRenderingMode="Auto"
-        FontFamily="{DynamicResource MaterialDesignFont}"
         
-        Title="Авторизация" Height="800" Width="1200" Background="Transparent"        
-        AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen">
-    <Border CornerRadius="20" Background="LightGray">
+        Background="Transparent" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen"
+        TextElement.FontSize="25"
+        Title="Авторизация" Height="800" Width="1200">
+    <Border Background="LightGray" CornerRadius="20">
 
         <Grid>
 
-            <Button VerticalAlignment="Top"
+            <Button Name="ShutdownButton"
+                    Content="X"
+                    VerticalAlignment="Top"
                     HorizontalAlignment="Right"
                     Margin="20"
-                    Content="X"
-                    Click="Button_Click"/>
+                    Command="{Binding ShutDown}"/>
 
-            <Border Background="White" CornerRadius="20" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Border Background="White" CornerRadius="20" HorizontalAlignment="Center" VerticalAlignment="Center">
 
-                <Border.Effect>
-                    <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.5" Color="LightGray"/>
-                </Border.Effect>
+                <StackPanel>
 
-                <StackPanel Margin="60 20">
-                    <Label Content="Авторизация" FontSize="50"/>
+                    <TextBlock Text="Авторизация" FontSize="45" Margin="100 20"/>
 
                     <TextBox Name="LoginEnter"
                              Text="{Binding Login}"
+                             materialDesign:HintAssist.Hint="Логин"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                             materialDesign:HintAssist.Hint="Логин" Margin="0 20"/>
-                    <PasswordBox Name="PasswordEnter"
-                             Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
-                             materialDesign:HintAssist.Hint="Пароль" Margin="0 20"/>
+                             Margin="30 20"/>
+                    <PasswordBox Name="PasswordEneter"
+                                 PasswordChanged="PasswordEneter_PasswordChanged"
+                                 materialDesign:HintAssist.Hint="Пароль"
+                                 Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
+                                 Margin="30 20"/>
+
                     <Button Name="SignInButton"
                             Content="Войти"
-                            Margin="50 20"
+                            Margin="100 30"
                             Command="{Binding SignIn}"/>
-                </StackPanel>
 
+                </StackPanel>
+                
             </Border>
 
         </Grid>
