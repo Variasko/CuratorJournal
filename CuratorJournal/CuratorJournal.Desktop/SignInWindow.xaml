@@ -3,14 +3,23 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CuratorJournal.Desktop"
+        xmlns:l="clr-namespace:CuratorJournal.Desktop"
         mc:Ignorable="d"
-        
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        
-        Background="Transparent" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:vm="clr-namespace:CuratorJournal.Desktop.ViewModels"
+        Background="Transparent"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
         TextElement.FontSize="25"
-        Title="Авторизация" Height="800" Width="1200">
+        Title="{Binding Title}"
+        Height="800"
+        Width="1200">
+
+    <Window.DataContext>
+        <vm:SignInWindowViewModel/>
+    </Window.DataContext>
+    
     <Border Background="LightGray" CornerRadius="20">
 
         <Grid>
@@ -26,27 +35,44 @@
 
                 <StackPanel>
 
-                    <TextBlock Text="Авторизация" FontSize="45" Margin="100 20"/>
+                    <TextBlock Text="{Binding AuthLabel}" FontSize="45" Margin="100 20"/>
 
                     <TextBox Name="LoginEnter"
                              Text="{Binding Login}"
-                             materialDesign:HintAssist.Hint="Логин"
+                             md:HintAssist.Hint="{Binding LoginHint}"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              Margin="30 20"/>
                     <PasswordBox Name="PasswordEneter"
                                  PasswordChanged="PasswordEneter_PasswordChanged"
-                                 materialDesign:HintAssist.Hint="Пароль"
+                                 md:HintAssist.Hint="{Binding PasswordHint}"
                                  Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
                                  Margin="30 20"/>
 
                     <Button Name="SignInButton"
-                            Content="Войти"
+                            Content="{Binding SignInButtonText}"
                             Margin="100 30"
                             Command="{Binding SignIn}"/>
 
                 </StackPanel>
                 
             </Border>
+
+            <ComboBox ItemsSource="{Binding Languages}" 
+                      SelectedItem="{Binding SelectedLanguage}"
+                      HorizontalAlignment="Right"
+                      VerticalAlignment="Bottom"
+                      Margin="20"
+                      Width="150"
+                      Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding Flag}" Width="20" Margin="0 0 5 0"/>
+                            <TextBlock Text="{Binding DisplayName}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
 
         </Grid>
         
