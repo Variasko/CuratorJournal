@@ -1,13 +1,19 @@
 ﻿using CuratorJournal.Desktop.Helpers;
+using CuratorJournal.Desktop.Infrastructure.Commands;
 using CuratorJournal.Desktop.Models.Settings;
 using CuratorJournal.Desktop.ViewModels.Base;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
+using System.Windows.Input;
+using System.Windows.Navigation;
 
 namespace CuratorJournal.Desktop.ViewModels
 {
     internal class SignInWindowViewModel : BaseViewModel
     {
+        #region Поля
+
         #region Заголовок окна
         private string _title;
         public string Title
@@ -87,9 +93,33 @@ namespace CuratorJournal.Desktop.ViewModels
         public ObservableCollection<LanguageItem> Languages { get; } = new ObservableCollection<LanguageItem>();
         #endregion
 
+        #endregion
+
+        #region Команды
+
+        #region CloseApplicationCommand
+
+        public ICommand CloseApplicationCommand { get; }
+
+        private bool CanCloseApplicationCommandExecute(object p) => true;
+
+        private void OnCloseApplicationCommandExecuted(object p) => Application.Current.Shutdown();
+
+        #endregion
+
+        #endregion
+
         #region Конструктор
         public SignInWindowViewModel()
         {
+            #region Команды
+
+            CloseApplicationCommand = 
+                new LambdaCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecute);
+
+            #endregion
+
+            #region Локализация
             // Инициализация языков
             Languages.Add(new LanguageItem("ru", "Русский"));
             Languages.Add(new LanguageItem("en", "English"));
@@ -99,6 +129,7 @@ namespace CuratorJournal.Desktop.ViewModels
             SelectedLanguage = Languages.FirstOrDefault(l => l.Code == currentLang) ?? Languages.First();
 
             InitializeTranslations();
+            #endregion
         }
         #endregion
 
