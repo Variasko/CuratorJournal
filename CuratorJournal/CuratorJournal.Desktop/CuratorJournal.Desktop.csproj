@@ -72,6 +72,7 @@
     </ApplicationDefinition>
     <Compile Include="Helpers\SettingsHelper.cs" />
     <Compile Include="Infrastructure\Commands\Base\Command.cs" />
+    <Compile Include="Infrastructure\Commands\LambdaCommand.cs" />
     <Compile Include="Models\ClassHourDTO.cs" />
     <Compile Include="Models\CuratorCharacteristicDTO.cs" />
     <Compile Include="Models\CuratorDTO.cs" />
