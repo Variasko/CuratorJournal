@@ -1,0 +1,36 @@
+{
+  "Translations": {
+  "ru": {
+    "Auth": "Авторизация",
+    "Profile": "Профиль",
+    "CuratorObservationSheet": "Лист наблюдений куратора",
+    "GroupSocialPassport": "Социальный паспорт группы",
+    "ParentMeetingProtocols": "Протоколы родительских собраний",
+    "StudentsInDormitory": "Студенты проживающие в общежитии",
+    "GroupActivists": "Активисты группы",
+    "StudentHobbies": "Хобби студентов",
+    "ClassHoursProtocol": "Посещение студентами классных часов",
+    "IndividualWork": "Индивидуальная работа",
+    "Logout": "Выход",
+    "Login": "Логин",
+    "Password": "Пароль",
+    "SignIn": "Вход"
+  },
+  "en": {
+    "Auth": "Authorization",
+    "Profile": "Profile",
+    "CuratorObservationSheet": "Curator's Observation Sheet",
+    "GroupSocialPassport": "Group Social Passport",
+    "ParentMeetingProtocols": "Parent Meeting Protocols",
+    "StudentsInDormitory": "Students Living in Dormitory",
+    "GroupActivists": "Group Activists",
+    "StudentHobbies": "Students' Hobbies",
+    "ClassHoursProtocol": "Class Hours Attendance Protocol",
+    "IndividualWork": "Individual Work",
+    "Logout": "Logout",
+    "Login": "Login",
+    "Password": "Password",
+    "SignIn": "Sign In"
+  }
+}
+}

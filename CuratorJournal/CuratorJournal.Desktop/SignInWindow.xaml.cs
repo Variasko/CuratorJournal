@@ -12,13 +12,12 @@ namespace CuratorJournal.Desktop
         public SignInWindow()
         {
             InitializeComponent();
-            DataContext = new SignInViewModel();
         }
 
         private void PasswordEneter_PasswordChanged(object sender, RoutedEventArgs e)
         {
             if (this.DataContext != null)
-            { ((SignInViewModel)this.DataContext).Password = ((PasswordBox)sender).Password; }
+            { ((SignInWindowViewModel)this.DataContext).Password = ((PasswordBox)sender).Password; }
         }
     }
 }
