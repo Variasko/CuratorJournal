@@ -70,6 +70,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helpers\SettingsHelper.cs" />
+    <Compile Include="Infrastructure\Commands\Base\Command.cs" />
+    <Compile Include="Infrastructure\Commands\LambdaCommand.cs" />
     <Compile Include="Models\ClassHourDTO.cs" />
     <Compile Include="Models\CuratorCharacteristicDTO.cs" />
     <Compile Include="Models\CuratorDTO.cs" />
@@ -80,6 +83,10 @@
     <Compile Include="Models\ParentDTO.cs" />
     <Compile Include="Models\ParentMeetingDTO.cs" />
     <Compile Include="Models\PersonDTO.cs" />
+    <Compile Include="Models\Settings\LanguageDictionary.cs" />
+    <Compile Include="Models\Settings\Languages.cs" />
+    <Compile Include="Models\Settings\AppSettings.cs" />
+    <Compile Include="Models\Settings\LanguagesItem.cs" />
     <Compile Include="Models\SocialStatuDTO.cs" />
     <Compile Include="Models\SpecializationDTO.cs" />
     <Compile Include="Models\StudentClassHourDTO.cs" />
@@ -92,12 +99,15 @@
     <Compile Include="SignInWindow.xaml.cs">
       <DependentUpon>SignInWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\SignInViewModel.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="ViewModels\Base\BaseViewModel.cs" />
+    <Compile Include="ViewModels\SignInWindowViewModel.cs" />
+    <Compile Include="Views\Windows\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -126,11 +136,13 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Page Include="SignInWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
