@@ -85,7 +85,6 @@
     <Compile Include="Models\Settings\Languages.cs" />
     <Compile Include="Models\Settings\AppSettings.cs" />
     <Compile Include="Models\Settings\LanguagesItem.cs" />
-    <Compile Include="RelayCommand.cs" />
     <Compile Include="SignInWindow.xaml.cs">
       <DependentUpon>SignInWindow.xaml</DependentUpon>
     </Compile>
