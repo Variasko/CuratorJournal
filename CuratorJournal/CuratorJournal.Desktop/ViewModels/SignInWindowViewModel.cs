@@ -95,30 +95,9 @@ namespace CuratorJournal.Desktop.ViewModels
 
         #endregion
 
-        #region Команды
-
-        #region CloseApplicationCommand
-
-        public ICommand CloseApplicationCommand { get; }
-
-        private bool CanCloseApplicationCommandExecute(object p) => true;
-
-        private void OnCloseApplicationCommandExecuted(object p) => Application.Current.Shutdown();
-
-        #endregion
-
-        #endregion
-
         #region Конструктор
         public SignInWindowViewModel()
         {
-            #region Команды
-
-            CloseApplicationCommand = 
-                new LambdaCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecute);
-
-            #endregion
-
             #region Локализация
             // Инициализация языков
             Languages.Add(new LanguageItem("ru", "Русский"));
