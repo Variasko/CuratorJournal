@@ -29,11 +29,8 @@
                     Content="X"
                     VerticalAlignment="Top"
                     HorizontalAlignment="Right"
-                    Margin="20">
-                <Button.Command>
-                    <cmd:CloseApplicationCommand/>
-                </Button.Command>
-            </Button>
+                    Margin="20"
+                    Command="{StaticResource CloseApplicationCommand}"/>
 
             <Border Background="White" CornerRadius="20" HorizontalAlignment="Center" VerticalAlignment="Center">
 
