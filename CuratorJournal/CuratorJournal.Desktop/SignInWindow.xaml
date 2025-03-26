@@ -17,10 +17,6 @@
         Height="800"
         Width="1200">
 
-    <Window.DataContext>
-        <vm:SignInWindowViewModel/>
-    </Window.DataContext>
-    
     <Border Background="LightGray" CornerRadius="20">
 
         <Grid>
@@ -52,7 +48,7 @@
                     <Button Name="SignInButton"
                             Content="{Binding SignInButtonText}"
                             Margin="100 30"
-                            Command="{Binding SignIn}"/>
+                            Command="{Binding SignInCommand}"/>
 
                 </StackPanel>
                 

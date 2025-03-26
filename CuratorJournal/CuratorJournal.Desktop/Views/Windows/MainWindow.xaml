@@ -5,9 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CuratorJournal.Desktop.Views.Windows"
         mc:Ignorable="d"
-        
+        xmlns:vm="clr-namespace:CuratorJournal.Desktop.ViewModels"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-
         Background="Transparent" AllowsTransparency="True" 
         WindowStyle="None" WindowStartupLocation="CenterScreen"
         TextElement.FontSize="25"

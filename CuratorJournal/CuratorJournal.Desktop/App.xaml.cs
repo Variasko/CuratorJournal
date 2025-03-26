@@ -1,10 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
+using CuratorJournal.Desktop.Infrastructure.Commands;
+using CuratorJournal.Desktop.Infrastructure.Services;
+using CuratorJournal.Desktop.Infrastructure.Services.Implementation;
+using CuratorJournal.Desktop.ViewModels;
+using CuratorJournal.Desktop.Views.Pages;
+using CuratorJournal.Desktop.Views.Windows;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CuratorJournal.Desktop
 {
@@ -13,5 +15,56 @@ namespace CuratorJournal.Desktop
     /// </summary>
     public partial class App : Application
     {
+        private static IServiceProvider _Services;
+
+        public static IServiceProvider Services => _Services ?? InitializeServices().BuildServiceProvider();
+
+        public static IServiceCollection InitializeServices()
+        {
+            var services = new ServiceCollection();
+
+            services.AddSingleton<IUserDialog, UserDialogService>();
+
+            services.AddTransient<SignInWindow>();
+            services.AddTransient<SignInWindowViewModel>();
+            services.AddTransient<MainWindow>();
+            services.AddTransient<MainWindowViewModel>();
+
+            services.AddTransient<ProfilePageViewModel>();
+
+            services.AddTransient(
+                s =>
+                {
+                    var model = s.GetRequiredService<SignInWindowViewModel>();
+                    var window = new SignInWindow { DataContext = model};
+
+                    return window;
+                });
+            services.AddTransient(
+                s =>
+                {
+                    var model = s.GetRequiredService<MainWindowViewModel>();
+                    var window = new MainWindow { DataContext = model };
+
+                    return window;
+                });
+            services.AddTransient(
+                s =>
+                {
+                    var model = s.GetRequiredService<ProfilePageViewModel>();
+                    var window = new ProfilePage();
+
+                    return window;
+                });
+
+            return services;
+        }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            Services.GetRequiredService<IUserDialog>().OpenSignInWindow();
+        }
     }
 }

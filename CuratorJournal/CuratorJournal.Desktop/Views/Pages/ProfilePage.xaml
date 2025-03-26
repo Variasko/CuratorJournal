@@ -1,0 +1,46 @@
+﻿<Page x:Class="CuratorJournal.Desktop.Views.Pages.ProfilePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CuratorJournal.Desktop.Views.Pages"
+      xmlns:vm="clr-namespace:CuratorJournal.Desktop.ViewModels"
+      xmlns:fa="http://schemas.fontawesome.com/icons/"
+      mc:Ignorable="d"
+      TextElement.FontSize="30"
+      d:DesignHeight="450" d:DesignWidth="800">
+    <Page.DataContext>
+        <vm:ProfilePageViewModel/>
+    </Page.DataContext>
+    <Border CornerRadius="20" Background="White">
+
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="20" Opacity="0.5" Color="LightGray"/>
+        </Border.Effect>
+
+        <StackPanel>
+
+            <fa:ImageAwesome Icon="Regular_User" Height="100" Width="100" Margin="20"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="{Binding Surname}" FontSize="20" Margin="10 0"/>
+                <TextBlock Text="{Binding Name}" FontSize="20" Margin="10 0"/>
+                <TextBlock Text="{Binding Patronymic}" FontSize="20" Margin="10 0"/>
+            </StackPanel>
+
+            <TextBlock HorizontalAlignment="Center" Text="{Binding CategoryName}"/>
+
+            <Button  HorizontalAlignment="Right" Background="Transparent" Height="40"
+                     BorderBrush="Transparent" Command="{StaticResource Logout}">
+                <fa:ImageAwesome Icon="Solid_SignInAlt" Height="30"
+                             Foreground="#ff5e5e">
+                    <fa:ImageAwesome.ToolTip>
+                        <TextBlock Text="{Binding LogOutToolTip}"/>
+                    </fa:ImageAwesome.ToolTip>
+                </fa:ImageAwesome>
+            </Button>
+
+        </StackPanel>
+        
+    </Border>
+</Page>

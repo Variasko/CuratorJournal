@@ -1,8 +1,11 @@
 ﻿using CuratorJournal.Desktop.Helpers;
+using CuratorJournal.Desktop.Infrastructure.Commands;
+using CuratorJournal.Desktop.Infrastructure.Services;
 using CuratorJournal.Desktop.Models.Settings;
 using CuratorJournal.Desktop.ViewModels.Base;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Input;
 
 namespace CuratorJournal.Desktop.ViewModels
 {
@@ -91,9 +94,33 @@ namespace CuratorJournal.Desktop.ViewModels
 
         #endregion
 
-        #region Конструктор
-        public SignInWindowViewModel()
+        #region Команды
+
+        public ICommand SignInCommand { get; }
+
+        private bool CanSignInCommandExecute(object parameter)
         {
+            return !(string.IsNullOrEmpty(_login) && string.IsNullOrEmpty(_password));
+        }
+
+        private void OnSignInCommandExecute(object parameter)
+        {
+            OpenMainWindow();
+        }
+
+        private void OpenMainWindow()
+        {
+            _userDialog.OpenMainWindow();
+        }
+
+        #endregion
+
+        #region Конструктор
+        public SignInWindowViewModel(IUserDialog userDialog)
+        {
+            SignInCommand = new LambdaCommand(OnSignInCommandExecute, CanSignInCommandExecute);
+            _userDialog = userDialog;
+
             #region Локализация
             // Инициализация языков
             Languages.Add(new LanguageItem("ru", "Русский"));
@@ -106,6 +133,23 @@ namespace CuratorJournal.Desktop.ViewModels
             InitializeTranslations();
             #endregion
         }
+        public SignInWindowViewModel()
+        {
+
+            #region Локализация
+            // Инициализация языков
+            Languages.Add(new LanguageItem("ru", "Русский"));
+            Languages.Add(new LanguageItem("en", "English"));
+
+            // Установка текущего языка
+            var currentLang = SettingsHelper.Instance.GetCurrentLanguage();
+            SelectedLanguage = Languages.FirstOrDefault(l => l.Code == currentLang) ?? Languages.First();
+
+            InitializeTranslations();
+            #endregion
+        }
+
+        private readonly IUserDialog _userDialog;
         #endregion
 
         #region Функции не для View
