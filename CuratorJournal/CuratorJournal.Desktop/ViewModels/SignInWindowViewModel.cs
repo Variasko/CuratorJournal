@@ -1,4 +1,5 @@
 ﻿using CuratorJournal.Desktop.Helpers;
+using CuratorJournal.Desktop.Infrastructure.Services;
 using CuratorJournal.Desktop.Models.Settings;
 using CuratorJournal.Desktop.ViewModels.Base;
 using System.Collections.ObjectModel;
@@ -105,6 +106,13 @@ namespace CuratorJournal.Desktop.ViewModels
 
             InitializeTranslations();
             #endregion
+        }
+
+        private readonly IUserDialog _userDialog;
+
+        public SignInWindowViewModel(IUserDialog userDialog) : this()
+        {
+            _userDialog = userDialog;
         }
         #endregion
 
