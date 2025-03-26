@@ -108,6 +108,8 @@ namespace CuratorJournal.Desktop.ViewModels
         }
         #endregion
 
+
+
         #region Функции не для View
         private void InitializeTranslations()
         {
