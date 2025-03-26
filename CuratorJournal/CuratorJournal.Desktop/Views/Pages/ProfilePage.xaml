@@ -31,7 +31,11 @@
             <TextBlock HorizontalAlignment="Center" Text="{Binding CategoryName}"/>
 
             <fa:ImageAwesome Icon="Solid_SignInAlt" Height="40" HorizontalAlignment="Right" Margin="20 10"
-                             Foreground="#ff5e5e"/>
+                             Foreground="#ff5e5e">
+                <fa:ImageAwesome.ToolTip>
+                    <TextBlock Text="{Binding LogOutToolTip}"/>
+                </fa:ImageAwesome.ToolTip>
+            </fa:ImageAwesome>
 
         </StackPanel>
         
