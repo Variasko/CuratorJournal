@@ -37,6 +37,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FontAwesome5, Version=2.1.11.0, Culture=neutral, PublicKeyToken=9cfaf01297a008f8, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome5.2.1.11\lib\net472\FontAwesome5.dll</HintPath>
+    </Reference>
+    <Reference Include="FontAwesome5.Net, Version=2.1.11.0, Culture=neutral, PublicKeyToken=9cfaf01297a008f8, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome5.2.1.11\lib\net472\FontAwesome5.Net.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=1.2.6.1513, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.2.6\lib\net45\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -72,30 +78,13 @@
     </ApplicationDefinition>
     <Compile Include="Helpers\SettingsHelper.cs" />
     <Compile Include="Infrastructure\Commands\Base\Command.cs" />
+    <Compile Include="Infrastructure\Commands\CloseApplicationCommand.cs" />
     <Compile Include="Infrastructure\Commands\LambdaCommand.cs" />
-    <Compile Include="Models\ClassHourDTO.cs" />
-    <Compile Include="Models\CuratorCharacteristicDTO.cs" />
-    <Compile Include="Models\CuratorDTO.cs" />
-    <Compile Include="Models\DirectionDTO.cs" />
-    <Compile Include="Models\GroupPostDTO.cs" />
-    <Compile Include="Models\HobbyDTO.cs" />
-    <Compile Include="Models\IndividualWorkDTO.cs" />
-    <Compile Include="Models\ParentDTO.cs" />
-    <Compile Include="Models\ParentMeetingDTO.cs" />
-    <Compile Include="Models\PersonDTO.cs" />
+    <Compile Include="Infrastructure\Commands\SignInCommand.cs" />
     <Compile Include="Models\Settings\LanguageDictionary.cs" />
     <Compile Include="Models\Settings\Languages.cs" />
     <Compile Include="Models\Settings\AppSettings.cs" />
     <Compile Include="Models\Settings\LanguagesItem.cs" />
-    <Compile Include="Models\SocialStatuDTO.cs" />
-    <Compile Include="Models\SpecializationDTO.cs" />
-    <Compile Include="Models\StudentClassHourDTO.cs" />
-    <Compile Include="Models\StudentDTO.cs" />
-    <Compile Include="Models\StudentInDormitoryDTO.cs" />
-    <Compile Include="Models\StudyGroupDTO.cs" />
-    <Compile Include="Models\TeacherCategoryDTO.cs" />
-    <Compile Include="Models\UserDTO.cs" />
-    <Compile Include="RelayCommand.cs" />
     <Compile Include="SignInWindow.xaml.cs">
       <DependentUpon>SignInWindow.xaml</DependentUpon>
     </Compile>

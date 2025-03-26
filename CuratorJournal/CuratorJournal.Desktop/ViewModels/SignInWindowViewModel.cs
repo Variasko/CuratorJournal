@@ -1,12 +1,8 @@
 ﻿using CuratorJournal.Desktop.Helpers;
-using CuratorJournal.Desktop.Infrastructure.Commands;
 using CuratorJournal.Desktop.Models.Settings;
 using CuratorJournal.Desktop.ViewModels.Base;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows;
-using System.Windows.Input;
-using System.Windows.Navigation;
 
 namespace CuratorJournal.Desktop.ViewModels
 {
@@ -95,30 +91,9 @@ namespace CuratorJournal.Desktop.ViewModels
 
         #endregion
 
-        #region Команды
-
-        #region CloseApplicationCommand
-
-        public ICommand CloseApplicationCommand { get; }
-
-        private bool CanCloseApplicationCommandExecute(object p) => true;
-
-        private void OnCloseApplicationCommandExecuted(object p) => Application.Current.Shutdown();
-
-        #endregion
-
-        #endregion
-
         #region Конструктор
         public SignInWindowViewModel()
         {
-            #region Команды
-
-            CloseApplicationCommand = 
-                new LambdaCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecute);
-
-            #endregion
-
             #region Локализация
             // Инициализация языков
             Languages.Add(new LanguageItem("ru", "Русский"));

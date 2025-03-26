@@ -4,27 +4,9 @@ using System.Runtime.CompilerServices;
 
 namespace CuratorJournal.Desktop.ViewModels.Base
 {
-    internal abstract class BaseViewModel : INotifyPropertyChanged, IDisposable
+    internal abstract class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-
-        public void Dispose()
-        {
-            Dispose(true);
-        }
-
-        //~BaseViewModel()
-        //{
-        //    Dispose(false);
-        //}
-
-        private bool _Disposed;
-
-        protected virtual void Dispose(bool Disposing)
-        {
-            if (!Disposing || _Disposed) return;
-            _Disposed = true;
-        }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string PropertyName = null)
         {
