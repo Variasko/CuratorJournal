@@ -5,12 +5,35 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CuratorJournal.Desktop.Views.Pages"
       xmlns:vm="clr-namespace:CuratorJournal.Desktop.ViewModels"
-      mc:Ignorable="d" 
+      xmlns:fa="http://schemas.fontawesome.com/icons/"
+      mc:Ignorable="d"
+      TextElement.FontSize="30"
       d:DesignHeight="450" d:DesignWidth="800">
     <Page.DataContext>
         <vm:ProfilePageViewModel/>
     </Page.DataContext>
-    <Grid>
+    <Border CornerRadius="20" Background="White">
+
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="20" Opacity="0.5" Color="LightGray"/>
+        </Border.Effect>
+
+        <StackPanel>
+
+            <fa:ImageAwesome Icon="Regular_User" Height="100" Width="100" Margin="20"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="{Binding Surname}" FontSize="20" Margin="10 0"/>
+                <TextBlock Text="{Binding Name}" FontSize="20" Margin="10 0"/>
+                <TextBlock Text="{Binding Patronymic}" FontSize="20" Margin="10 0"/>
+            </StackPanel>
+
+            <TextBlock HorizontalAlignment="Center" Text="{Binding CategoryName}"/>
+
+            <fa:ImageAwesome Icon="Solid_SignInAlt" Height="40" HorizontalAlignment="Right" Margin="20 10"
+                             Foreground="#ff5e5e"/>
+
+        </StackPanel>
         
-    </Grid>
+    </Border>
 </Page>
