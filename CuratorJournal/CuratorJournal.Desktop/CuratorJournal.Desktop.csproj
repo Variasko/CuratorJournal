@@ -98,6 +98,8 @@
     <Compile Include="Infrastructure\Commands\LambdaCommand.cs" />
     <Compile Include="Infrastructure\Commands\Logout.cs" />
     <Compile Include="Infrastructure\Commands\SignInCommand.cs" />
+    <Compile Include="Infrastructure\Services\Implementation\UserDialogService.cs" />
+    <Compile Include="Infrastructure\Services\IUserDialog.cs" />
     <Compile Include="Models\Settings\LanguageDictionary.cs" />
     <Compile Include="Models\Settings\Languages.cs" />
     <Compile Include="Models\Settings\AppSettings.cs" />

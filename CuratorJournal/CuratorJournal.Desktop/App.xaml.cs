@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows;
+using CuratorJournal.Desktop.Infrastructure.Services;
+using CuratorJournal.Desktop.Infrastructure.Services.Implementation;
 using CuratorJournal.Desktop.ViewModels;
 using CuratorJournal.Desktop.Views.Pages;
 using CuratorJournal.Desktop.Views.Windows;
@@ -22,6 +24,8 @@ namespace CuratorJournal.Desktop
 
             services.AddSingleton<SignInWindowViewModel>();
             services.AddSingleton<MainWindowViewModel>();
+
+            services.AddSingleton<IUserDialog, UserDialogService>();
 
             services.AddTransient<ProfilePageViewModel>();
 
