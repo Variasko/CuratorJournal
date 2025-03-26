@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows;
 using CuratorJournal.Desktop.ViewModels;
+using CuratorJournal.Desktop.Views.Pages;
+using CuratorJournal.Desktop.Views.Windows;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CuratorJournal.Desktop
@@ -22,6 +24,31 @@ namespace CuratorJournal.Desktop
             services.AddSingleton<MainWindowViewModel>();
 
             services.AddTransient<ProfilePageViewModel>();
+
+            services.AddTransient(
+                s =>
+                {
+                    var model = s.GetRequiredService<SignInWindowViewModel>();
+                    var window = new SignInWindow { DataContext = model };
+
+                    return window;
+                });
+            services.AddTransient(
+                s =>
+                {
+                    var model = s.GetRequiredService<MainWindowViewModel>();
+                    var window = new MainWindow { DataContext = model };
+
+                    return window;
+                });
+            services.AddTransient(
+                s =>
+                {
+                    var model = s.GetRequiredService<ProfilePageViewModel>();
+                    var window = new ProfilePage { DataContext = model };
+
+                    return window;
+                });
 
             return services;
         }
