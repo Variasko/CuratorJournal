@@ -52,5 +52,12 @@ namespace CuratorJournal.Desktop
 
             return services;
         }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            Services.GetRequiredService<SignInWindow>().Show();
+        }
     }
 }
