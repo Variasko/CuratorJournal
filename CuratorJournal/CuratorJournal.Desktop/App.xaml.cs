@@ -29,7 +29,7 @@ namespace CuratorJournal.Desktop
                 s =>
                 {
                     var model = s.GetRequiredService<SignInWindowViewModel>();
-                    var window = new SignInWindow { DataContext = model };
+                    var window = new SignInWindow();
 
                     return window;
                 });
@@ -37,7 +37,7 @@ namespace CuratorJournal.Desktop
                 s =>
                 {
                     var model = s.GetRequiredService<MainWindowViewModel>();
-                    var window = new MainWindow { DataContext = model };
+                    var window = new MainWindow();
 
                     return window;
                 });
@@ -45,7 +45,7 @@ namespace CuratorJournal.Desktop
                 s =>
                 {
                     var model = s.GetRequiredService<ProfilePageViewModel>();
-                    var window = new ProfilePage { DataContext = model };
+                    var window = new ProfilePage();
 
                     return window;
                 });
