@@ -52,7 +52,7 @@
                     <Button Name="SignInButton"
                             Content="{Binding SignInButtonText}"
                             Margin="100 30"
-                            Command="{Binding SignIn}"/>
+                            Command="{StaticResource ChangeToMainWindow}"/>
 
                 </StackPanel>
                 

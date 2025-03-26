@@ -9,7 +9,7 @@ namespace CuratorJournal.Desktop.Infrastructure.Commands
 
         public override void Execute(object parameter)
         {
-                
+            
         }
     }
 }
