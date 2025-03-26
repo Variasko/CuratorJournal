@@ -61,7 +61,7 @@ namespace CuratorJournal.Desktop
         {
             base.OnStartup(e);
 
-            Services.GetRequiredService<SignInWindow>().Show();
+            Services.GetRequiredService<IUserDialog>().OpenSignInWindow();
         }
     }
 }
