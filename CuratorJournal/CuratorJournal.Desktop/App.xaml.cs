@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using CuratorJournal.Desktop.Infrastructure.Commands;
 using CuratorJournal.Desktop.Infrastructure.Services;
 using CuratorJournal.Desktop.Infrastructure.Services.Implementation;
 using CuratorJournal.Desktop.ViewModels;
@@ -22,10 +23,12 @@ namespace CuratorJournal.Desktop
         {
             var services = new ServiceCollection();
 
-            services.AddSingleton<SignInWindowViewModel>();
-            services.AddSingleton<MainWindowViewModel>();
-
             services.AddSingleton<IUserDialog, UserDialogService>();
+
+            services.AddTransient<SignInWindow>();
+            services.AddTransient<SignInWindowViewModel>();
+            services.AddTransient<MainWindow>();
+            services.AddTransient<MainWindowViewModel>();
 
             services.AddTransient<ProfilePageViewModel>();
 
@@ -33,7 +36,7 @@ namespace CuratorJournal.Desktop
                 s =>
                 {
                     var model = s.GetRequiredService<SignInWindowViewModel>();
-                    var window = new SignInWindow();
+                    var window = new SignInWindow { DataContext = model};
 
                     return window;
                 });
@@ -41,7 +44,7 @@ namespace CuratorJournal.Desktop
                 s =>
                 {
                     var model = s.GetRequiredService<MainWindowViewModel>();
-                    var window = new MainWindow();
+                    var window = new MainWindow { DataContext = model };
 
                     return window;
                 });

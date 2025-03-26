@@ -13,8 +13,6 @@
             </ResourceDictionary.MergedDictionaries>
 
             <cmd:CloseApplicationCommand x:Key="CloseApplicationCommand"/>
-            <cmd:ChangeToMainWindow x:Key="ChangeToMainWindow"/>
-            <cmd:Logout x:Key="Logout"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
