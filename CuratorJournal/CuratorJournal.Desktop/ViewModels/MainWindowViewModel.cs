@@ -4,14 +4,13 @@ namespace CuratorJournal.Desktop.ViewModels
 {
     internal class MainWindowViewModel
     {
-        public MainWindowViewModel()
-        {
-
-        }
         private readonly IUserDialog _userDialog;
-        public MainWindowViewModel(IUserDialog userDialog) : this()
+        public MainWindowViewModel(IUserDialog userDialog)
         {
             _userDialog = userDialog;
+        }
+        public MainWindowViewModel()
+        {
         }
     }
 }
