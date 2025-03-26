@@ -7,35 +7,58 @@ namespace CuratorJournal.Desktop.Infrastructure.Services.Implementation
 {
     internal class UserDialogService : IUserDialog
     {
-        private readonly IServiceProvider _Services;
+        private readonly IServiceProvider _services;
 
-        private SignInWindow _SignInWindow;
-        private MainWindow _MainWindow;
-        public UserDialogService(IServiceProvider Services) => _Services = Services;
+        private SignInWindow _signInWindow;
+        private MainWindow _mainWindow;
+
+        public UserDialogService(IServiceProvider services)
+        {
+            _services = services;
+        }
+
         public void OpenMainWindow()
         {
-            if (_MainWindow != null)
+            if (_mainWindow == null || !_mainWindow.IsLoaded)
             {
-                _MainWindow.Show();
-                return;
+                CreateMainWindow();
             }
 
-            _MainWindow = _Services.GetRequiredService<MainWindow>();
-            _MainWindow.Closed += ((s, e) => _MainWindow = null);
-            _MainWindow.Show();
+            _mainWindow.Show();
+            _mainWindow.Activate();
         }
 
         public void OpenSignInWindow()
         {
-            if (_SignInWindow != null)
+            if (_signInWindow == null || !_signInWindow.IsLoaded)
             {
-                _SignInWindow.Show();
-                return;
+                CreateSignInWindow();
             }
 
-            _SignInWindow = _Services.GetRequiredService<SignInWindow>();
-            _SignInWindow.Closed += ((s, e) => _SignInWindow = null);
-            _SignInWindow.Show();
+            _signInWindow.Show();
+            _signInWindow.Activate();
+        }
+
+        private void CreateMainWindow()
+        {
+            _mainWindow?.Close();
+
+            _mainWindow = _services.GetRequiredService<MainWindow>();
+            _mainWindow.Closed += (s, e) =>
+            {
+                _mainWindow = null;
+            };
+        }
+
+        private void CreateSignInWindow()
+        {
+            _signInWindow?.Close();
+
+            _signInWindow = _services.GetRequiredService<SignInWindow>();
+            _signInWindow.Closed += (s, e) =>
+            {
+                _signInWindow = null;
+            };
         }
     }
 }
