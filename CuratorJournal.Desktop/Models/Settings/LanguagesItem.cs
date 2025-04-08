@@ -1,14 +1,6 @@
-﻿namespace CuratorJournal.Desktop.Models.Settings
-{
-    public class LanguageItem
-    {
-        public string Code { get; }
-        public string DisplayName { get; }
+﻿namespace CuratorJournal.Desktop.Models.Settings;
 
-        public LanguageItem(string code, string displayName)
-        {
-            Code = code;
-            DisplayName = displayName;
-        }
-    }
-}
+public record LanguageItem(
+    string Code,
+    string DisplayName
+);

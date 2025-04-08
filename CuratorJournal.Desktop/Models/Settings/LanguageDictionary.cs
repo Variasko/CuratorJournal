@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
 
-namespace CuratorJournal.Desktop.Models.Settings
+namespace CuratorJournal.Desktop.Models.Settings;
+
+public record LanguageDictionary(
+    Dictionary<string, Dictionary<string, string>> Translations
+)
 {
-    public class LanguageDictionary
+    public LanguageDictionary()
+        : this(new Dictionary<string, Dictionary<string, string>>())
     {
-        public Dictionary<string, Dictionary<string, string>> Translations { get; set; }
-            = new Dictionary<string, Dictionary<string, string>>();
     }
 }

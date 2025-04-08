@@ -1,9 +1,3 @@
-﻿using System;
+﻿namespace CuratorJournal.Desktop.Models.Settings;
 
-namespace CuratorJournal.Desktop.Models.Settings
-{
-    public class AppSettings
-    {
-        public string CurrentLanguage { get; set; } = "ru";
-    }
-}
+public record AppSettings(string CurrentLanguage = "ru");

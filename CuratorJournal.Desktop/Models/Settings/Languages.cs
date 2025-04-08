@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace CuratorJournal.Desktop.Models.Settings
-{
-    public class Languages
-    {
-        public string Name { get; set; }
-        public List<LanguageDictionary> Words { get; set; }
-    }
-}
+namespace CuratorJournal.Desktop.Models.Settings;
+
+public record Languages(
+    string Name,
+    List<LanguageDictionary> Words
+);
