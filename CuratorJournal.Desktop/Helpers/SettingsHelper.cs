@@ -46,10 +46,21 @@ namespace CuratorJournal.Desktop.Helpers
 
             var langDict = _languageDictionary.Translations[language];
 
-            // Поиск фразы с защитой от null
-            return langDict != null && langDict.TryGetValue(key, out var phrase)
-                ? phrase
-                : $"!{key}!";
+            if (langDict == null)
+            {
+                return $"!{key}!";
+            }
+
+            bool keyExists = langDict.TryGetValue(key, out string phrase);
+
+            if (keyExists)
+            {
+                return phrase;
+            }
+            else
+            {
+                return $"!{key}!";
+            }
         }
 
         private AppSettings LoadSettings()
@@ -57,9 +68,19 @@ namespace CuratorJournal.Desktop.Helpers
             try
             {
                 var path = "settings.json";
-                return File.Exists(path)
-                    ? JsonConvert.DeserializeObject<AppSettings>(File.ReadAllText(path))
-                    : new AppSettings();
+
+                if (File.Exists(path))
+                {
+                    string jsonContent = File.ReadAllText(path);
+
+                    AppSettings settings = JsonConvert.DeserializeObject<AppSettings>(jsonContent);
+
+                    return settings;
+                }
+                else
+                {
+                    return new AppSettings();
+                }
             }
             catch
             {
