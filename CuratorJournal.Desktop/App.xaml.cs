@@ -4,6 +4,7 @@ using CuratorJournal.Desktop.Infrastructure.Commands;
 using CuratorJournal.Desktop.Infrastructure.Services;
 using CuratorJournal.Desktop.Infrastructure.Services.Implementation;
 using CuratorJournal.Desktop.ViewModels;
+using CuratorJournal.Desktop.Views.Pages;
 using CuratorJournal.Desktop.Views.Windows;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -23,11 +24,15 @@ public partial class App : Application
         var services = new ServiceCollection();
 
         services.AddSingleton<IUserDialog, UserDialogService>();
+        services.AddSingleton<IDialogService, DialogService>();
 
         services.AddTransient<SignInWindow>();
         services.AddTransient<SignInWindowViewModel>();
         services.AddTransient<MentorMainWindow>();
         services.AddTransient<MentorMainWindowViewModel>();
+
+        services.AddTransient<ProfilePageViewModel>();
+        services.AddTransient<SocialPassportPageViewModel>();
 
 
 
@@ -47,6 +52,24 @@ public partial class App : Application
 
                 return window;
             });
+        services.AddTransient(
+            s =>
+            {
+                var model = s.GetRequiredService<ProfilePageViewModel>();
+                var page = new ProfilePage { DataContext = model };
+
+                return page;
+            }
+            );
+        services.AddTransient(
+            s =>
+            {
+                var model = s.GetRequiredService<SocialPassportPageViewModel>();
+                var page = new SocialPassportPage { DataContext = model };
+
+                return page;
+            }
+            );
 
         return services;
     }
