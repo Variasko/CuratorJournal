@@ -4,20 +4,20 @@ using System.Runtime.CompilerServices;
 
 namespace CuratorJournal.Desktop.ViewModels.Base
 {
-    internal abstract class BaseViewModel : INotifyPropertyChanged
+    internal class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string PropertyName = null)
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected virtual bool Set<T>(ref T filed, T value, [CallerMemberName] string PropertyName = null)
+        protected bool Set<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
         {
-            if (Equals(filed, value)) return false;
-            filed = value;
-            OnPropertyChanged(PropertyName);
+            if (EqualityComparer<T>.Default.Equals(field, value)) return false;
+            field = value;
+            OnPropertyChanged(propertyName);
             return true;
         }
     }
