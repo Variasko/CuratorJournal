@@ -49,7 +49,11 @@ namespace CuratorJournal.Desktop.ViewModels
 				Name = "Alexander",
 				Patronymic = "Alexeevich",
 				Phone = "9128467",
-				Email = "sakdjfh@gmail.com"
+				Email = "sakdjfh@gmail.com",
+			},
+			Groups = new List<Group>
+			{
+				new Group{ GroupId = 1, GroupFullName="ИСП-421п" }
 			}
 		};
 
