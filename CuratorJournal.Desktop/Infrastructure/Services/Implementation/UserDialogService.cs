@@ -8,26 +8,37 @@ namespace CuratorJournal.Desktop.Infrastructure.Services.Implementation
 {
     internal class UserDialogService : IUserDialog
     {
-        private readonly IServiceProvider _services;
+        private readonly Func<ProfilePageViewModel> _profileVmFactory;
+        private readonly Func<SocialPassportPageViewModel> _socialPassportVmFactory;
+        private readonly Func<SignInWindow> _signInWindowFactory;
+        private readonly Func<MentorMainWindow> _mentorMainWindowFactory;
 
         private SignInWindow _signInWindow;
         private MentorMainWindow _mentorMainWindow;
 
-        public UserDialogService(IServiceProvider serviceProvider)
+        public UserDialogService(
+        Func<ProfilePageViewModel> profileVmFactory,
+        Func<SocialPassportPageViewModel> socialPassportVmFactory,
+        Func<SignInWindow> signInWindowFactory,
+        Func<MentorMainWindow> mentorMainWindowFactory)
         {
-            _services = serviceProvider;
+            _profileVmFactory = profileVmFactory;
+            _socialPassportVmFactory = socialPassportVmFactory;
+            _signInWindowFactory = signInWindowFactory;
+            _mentorMainWindowFactory = mentorMainWindowFactory;
         }
 
         public Page GetProfilePage()
         {
             var page = new ProfilePage();
-            page.DataContext = _services.GetRequiredService<ProfilePageViewModel>();
+            page.DataContext = _profileVmFactory();
             return page;
         }
+
         public Page GetSocialPassportPage()
         {
             var page = new SocialPassportPage();
-            page.DataContext = _services.GetRequiredService<SocialPassportPageViewModel>();
+            page.DataContext = _socialPassportVmFactory();
             return page;
         }
 
@@ -56,23 +67,17 @@ namespace CuratorJournal.Desktop.Infrastructure.Services.Implementation
         private void CreateMentorMainWindow()
         {
             _mentorMainWindow?.Close();
+            _mentorMainWindow = _mentorMainWindowFactory();
 
-            _mentorMainWindow = _services.GetRequiredService<MentorMainWindow>();
-            _mentorMainWindow.Closed += (s, e) =>
-            {
-                _mentorMainWindow = null;
-            };
+            _mentorMainWindow.Closed += (s, e) => _mentorMainWindow = null;
         }
 
         private void CreateSignInWindow()
         {
             _signInWindow?.Close();
+            _signInWindow = _signInWindowFactory();
 
-            _signInWindow = _services.GetRequiredService<SignInWindow>();
-            _signInWindow.Closed += (s, e) =>
-            {
-                _signInWindow = null;
-            };
+            _signInWindow.Closed += (s, e) => _signInWindow = null;
         }
     }
 }
