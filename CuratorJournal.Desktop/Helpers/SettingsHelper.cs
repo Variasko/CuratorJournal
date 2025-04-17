@@ -1,66 +1,39 @@
-﻿using System;
-using System.IO;
+﻿using CuratorJournal.Desktop.Models.Settings;
 using Newtonsoft.Json;
-using CuratorJournal.Desktop.Models.Settings;
-using System.Collections.Generic;
+using System.IO;
 
 namespace CuratorJournal.Desktop.Helpers
 {
-    public class SettingsHelper
+    public sealed class SettingsHelper
     {
-        private readonly AppSettings _settings;
+        private AppSettings _settings;
         private LanguageDictionary _languageDictionary;
 
-        private static readonly Lazy<SettingsHelper> _instance =
-            new Lazy<SettingsHelper>(() => new SettingsHelper());
-
+        private static readonly Lazy<SettingsHelper> _instance = new(() => new SettingsHelper());
         public static SettingsHelper Instance => _instance.Value;
 
         private SettingsHelper()
         {
-            _settings = LoadSettings() ?? new AppSettings();
-            _languageDictionary = LoadLanguageDictionary() ?? new LanguageDictionary();
-
-            // Инициализация дефолтных значений если словарь пустой
-            if (_languageDictionary.Translations.Count == 0)
-            {
-                _languageDictionary.Translations = new Dictionary<string, Dictionary<string, string>>
-                {
-                    ["ru"] = new Dictionary<string, string>(),
-                    ["en"] = new Dictionary<string, string>()
-                };
-            }
+            _settings = LoadSettings();
+            _languageDictionary = LoadLanguageDictionary();
         }
 
         public string GetPhrase(string key)
         {
             var language = _settings.CurrentLanguage;
 
-            // Проверка на null перед обращением к словарю
-            if (_languageDictionary?.Translations == null)
-                return $"!{key}!";
+            if (!_languageDictionary.Translations.TryGetValue(language, out var langDict))
+                langDict = _languageDictionary.Translations.GetValueOrDefault("en");
 
-            // Проверка существования языка
-            if (!_languageDictionary.Translations.ContainsKey(language))
-                language = "en"; // Fallback to English
+            return langDict?.TryGetValue(key, out var phrase) == true ? phrase : $"!{key}!";
+        }
 
-            var langDict = _languageDictionary.Translations[language];
+        public string GetCurrentLanguage() => _settings.CurrentLanguage;
 
-            if (langDict == null)
-            {
-                return $"!{key}!";
-            }
-
-            bool keyExists = langDict.TryGetValue(key, out string phrase);
-
-            if (keyExists)
-            {
-                return phrase;
-            }
-            else
-            {
-                return $"!{key}!";
-            }
+        public void SetLanguage(string languageCode)
+        {
+            _settings = _settings with { CurrentLanguage = languageCode };
+            SaveSettings();
         }
 
         private AppSettings LoadSettings()
@@ -71,20 +44,20 @@ namespace CuratorJournal.Desktop.Helpers
 
                 if (File.Exists(path))
                 {
-                    string jsonContent = File.ReadAllText(path);
+                    var jsonContent = File.ReadAllText(path);
+                    var settings = JsonConvert.DeserializeObject<AppSettings>(jsonContent);
 
-                    AppSettings settings = JsonConvert.DeserializeObject<AppSettings>(jsonContent);
-
-                    return settings;
+                    if (settings != null)
+                    {
+                        return settings;
+                    }
+                    return new AppSettings("ru");
                 }
-                else
-                {
-                    return new AppSettings();
-                }
+                return new AppSettings("ru");
             }
             catch
             {
-                return new AppSettings();
+                return new AppSettings("ru");
             }
         }
 
@@ -94,45 +67,28 @@ namespace CuratorJournal.Desktop.Helpers
             {
                 var path = "lang.json";
                 if (!File.Exists(path))
-                    return new LanguageDictionary();
+                    return new LanguageDictionary(new Dictionary<string, Dictionary<string, string>>());
 
                 var json = File.ReadAllText(path);
                 var result = JsonConvert.DeserializeObject<LanguageDictionary>(json);
 
-                // Дополнительная проверка структуры
-                if (result?.Translations == null)
+                if (result != null && result.Translations != null)
                 {
-                    result = new LanguageDictionary();
-                    result.Translations["ru"] = new Dictionary<string, string>();
-                    result.Translations["en"] = new Dictionary<string, string>();
+                    return result;
                 }
-
-                return result;
+                return new LanguageDictionary(new Dictionary<string, Dictionary<string, string>>());
             }
             catch
             {
-                return new LanguageDictionary();
+                return new LanguageDictionary(new Dictionary<string, Dictionary<string, string>>());
             }
-        }
-        public string GetCurrentLanguage()
-        {
-            return _settings.CurrentLanguage;
-        }
-
-        public void SetLanguage(string languageCode)
-        {
-            _settings.CurrentLanguage = languageCode;
-            SaveSettings();
-            _languageDictionary = LoadLanguageDictionary();
         }
 
         private void SaveSettings()
         {
             try
             {
-                var path = "settings.json";
-                var json = JsonConvert.SerializeObject(_settings, Formatting.Indented);
-                File.WriteAllText(path, json);
+                File.WriteAllText("settings.json", JsonConvert.SerializeObject(_settings, Formatting.Indented));
             }
             catch (Exception ex)
             {

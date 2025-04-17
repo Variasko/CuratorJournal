@@ -1,5 +1,6 @@
 ﻿using CuratorJournal.Desktop.Helpers;
 using CuratorJournal.Desktop.Infrastructure.Commands;
+using CuratorJournal.Desktop.Infrastructure.Services;
 using CuratorJournal.Desktop.Models.Settings;
 using CuratorJournal.Desktop.ViewModels.Base;
 using System.Collections.ObjectModel;
@@ -57,20 +58,20 @@ namespace CuratorJournal.Desktop.ViewModels
         /// <summary> Определение полей логина </summary>
         private string _login;
         public string Login
-		{
-			get { return _login; }
-			set { Set(ref _login, value); }
-		}
+        {
+            get { return _login; }
+            set { Set(ref _login, value); }
+        }
         #endregion
 
         #region Пароль
         /// <summary> Определение полей пароля </summary>
         private string _password;
-		public string Password
-		{
-			get { return _password; }
-			set { Set(ref _password, value); }
-		}
+        public string Password
+        {
+            get { return _password; }
+            set { Set(ref _password, value); }
+        }
         #endregion
 
         #region Языки
@@ -93,13 +94,28 @@ namespace CuratorJournal.Desktop.ViewModels
 
         #endregion
 
-        #region Команд
+        #region Команды
+
+        public ICommand SignInCommand { get; }
+
+        private bool CanSignInCommandExecute(object parameter)
+        {
+            return !(string.IsNullOrEmpty(_login) && string.IsNullOrEmpty(_password));
+        }
+
+        private void OnSignInCommandExecute(object parameter)
+        {
+            /* TODO Доделать эндпоинт авторизации */
+            _userDialog.OpenMentorMainWindow();
+        }
 
         #endregion
 
         #region Конструктор
-        public SignInWindowViewModel()
+        public SignInWindowViewModel(IUserDialog userDialog)
         {
+            SignInCommand = new LambdaCommand(OnSignInCommandExecute, CanSignInCommandExecute);
+            _userDialog = userDialog;
 
             #region Локализация
             // Инициализация языков
@@ -113,6 +129,9 @@ namespace CuratorJournal.Desktop.ViewModels
             InitializeTranslations();
             #endregion
         }
+        public SignInWindowViewModel() { }
+
+        private readonly IUserDialog _userDialog;
         #endregion
 
         #region Функции не для View
