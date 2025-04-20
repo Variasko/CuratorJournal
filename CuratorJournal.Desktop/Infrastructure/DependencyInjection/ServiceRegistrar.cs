@@ -32,6 +32,11 @@ public static class ServiceRegistrar
         services.AddTransient<MentorMainWindowViewModel>();
         services.AddTransient<ProfilePageViewModel>();
         services.AddTransient<SocialPassportPageViewModel>();
+        services.AddTransient<DormitoryPageViewModel>();
+        services.AddTransient<ParentConferencePageViewModel>();
+        services.AddTransient<ClassHourPageViewModel>();
+        services.AddTransient<CharacteristicPageViewModel>();
+        services.AddTransient<HobiePageViewModel>();
         return services;
     }
 
@@ -61,6 +66,26 @@ public static class ServiceRegistrar
         {
             DataContext = s.GetRequiredService<SocialPassportPageViewModel>()
         });
+        services.AddTransient(s => new DormitoryPage
+        {
+            DataContext = s.GetRequiredService<DormitoryPageViewModel>()
+        });
+        services.AddTransient(s => new ParentConferencePage
+        {
+            DataContext = s.GetRequiredService<ParentConferencePageViewModel>()
+        });
+        services.AddTransient(s => new ClassHourPage
+        {
+            DataContext = s.GetRequiredService<ClassHourPageViewModel>()
+        });
+        services.AddTransient(s => new CharacteristicPage
+        {
+            DataContext = s.GetRequiredService<CharacteristicPageViewModel>()
+        });
+        services.AddTransient(s => new HobiePage
+        {
+            DataContext = s.GetRequiredService<HobiePageViewModel>()
+        });
 
         return services;
     }
@@ -72,6 +97,21 @@ public static class ServiceRegistrar
 
         services.AddTransient<Func<SocialPassportPageViewModel>>(sp =>
             sp.GetRequiredService<SocialPassportPageViewModel>);
+
+        services.AddTransient<Func<DormitoryPageViewModel>>(sp =>
+            sp.GetRequiredService<DormitoryPageViewModel>);
+
+        services.AddTransient<Func<ParentConferencePageViewModel>>(sp =>
+        sp.GetRequiredService<ParentConferencePageViewModel>);
+
+        services.AddTransient<Func<ClassHourPageViewModel>>(sp =>
+            sp.GetRequiredService<ClassHourPageViewModel>);
+
+        services.AddTransient<Func<CharacteristicPageViewModel>>(sp =>
+            sp.GetRequiredService<CharacteristicPageViewModel>);
+
+        services.AddTransient<Func<HobiePageViewModel>>(sp =>
+            sp.GetRequiredService<HobiePageViewModel>);
 
         services.AddTransient<Func<SignInWindow>>(sp =>
             sp.GetRequiredService<SignInWindow>);
