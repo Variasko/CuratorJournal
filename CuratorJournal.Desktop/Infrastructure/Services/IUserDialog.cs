@@ -9,5 +9,10 @@ namespace CuratorJournal.Desktop.Infrastructure.Services
         void OpenMentorMainWindow();
         Page GetProfilePage();
         Page GetSocialPassportPage();
+        Page GetDormitoryPage();
+        Page GetParentConferencePage();
+        Page GetClassHourPage();
+        Page GetCharacteristicPage();
+        Page GetHobiePage();
     }
 }

@@ -33,43 +33,6 @@ namespace CuratorJournal.Desktop.ViewModels
 
 		#endregion
 
-		#region Свойства
-
-		#region CurrentCurator : Curator - Авторизованный куратор
-
-		/// <summary> Авторизованный куратор </summary>
-		private Curator _CurrentCurator = new Curator
-		{
-			CuratorId = 1,
-			CategoryName = "Высшая категория",
-			Person = new Person
-			{
-				PersonId = 1,
-				Surname = "Comissarov",
-				Name = "Alexander",
-				Patronymic = "Alexeevich",
-				Phone = "9128467",
-				Email = "sakdjfh@gmail.com",
-			},
-			Groups = new List<Group>
-			{
-				new Group{ GroupId = 1, GroupFullName="ИСП-421п" }
-			}
-		};
-
-		/// <summary> Авторизованный куратор </summary>
-		public Curator CurrentCurator
-		{
-			get { return _CurrentCurator; }
-			set
-			{
-				Set(ref _CurrentCurator, value);
-			}
-		}
-		#endregion
-
-		#endregion
-
 
 		#region Команды
 

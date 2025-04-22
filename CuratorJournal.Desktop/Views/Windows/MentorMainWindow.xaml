@@ -16,6 +16,10 @@
         Title="{Binding Title}"
         Height="800" Width="1200">
 
+    <Window.DataContext>
+        <vm:MentorMainWindowViewModel/>
+    </Window.DataContext>
+
     
     <Border Background="LightGray" CornerRadius="20">
 
@@ -62,7 +66,47 @@
                             Height="50"
                             Command="{Binding ChangeToSocialPassportPage}">
                         <fa:ImageAwesome Icon="Users"/>
-                        
+                    </Button>
+
+                    <Button Margin="20"
+                            Padding="0"
+                            Background="Transparent"
+                            BorderBrush="Transparent"
+                            Height="50"
+                            Command="{Binding ChangeToDormitoryPage}">
+                        <fa:ImageAwesome Icon="Bed"/>
+                    </Button>
+
+		    <Button Margin="20" Padding="0"
+                            Background="Transparent"
+                            BorderBrush="Transparent"
+                            Height="50"
+                            Command="{Binding ChangeToParentConferencePage}">
+                        <fa:ImageAwesome Icon="Comments" Height="50"/>
+                    </Button>
+
+		    <Button Margin="20" Padding="0"
+                            Background="Transparent"
+                            BorderBrush="Transparent"
+                            Height="50"
+                            Command="{Binding ChangeToClassHourPage}">
+                        <fa:ImageAwesome Icon="ClockOutline" Height="50"/>
+                    </Button>
+
+		    <Button Margin="20" Padding="0"
+                            Background="Transparent"
+                            BorderBrush="Transparent"
+                            Height="50"
+                            Command="{Binding ChangeToCharacteristicPage}">
+                        <fa:ImageAwesome Icon="FileText" Height="50"/>
+                    </Button>
+
+                    <Button Margin="20" Padding="0"
+                            Background="Transparent"
+                            BorderBrush="Transparent"
+                            Height="50"
+                            Command="{Binding ChangeToHobiePage}">
+                        <fa:ImageAwesome Icon="Gamepad" Height="50"/>
                     </Button>
 
                 </StackPanel>

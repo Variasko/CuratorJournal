@@ -106,19 +106,89 @@ namespace CuratorJournal.Desktop.ViewModels
 			CurrentPage = page;
         }
 
-		#endregion
+
+		public ICommand ChangeToDormitoryPage { get; }
+
+		private bool CanChangeToDormitoryPageExecute(object p)
+		{
+			return _CurrentPage is not DormitoryPage;
+		}
+		private void OnChangeToDormitoryPageExecute(object p)
+		{
+			var page = _userDialog.GetDormitoryPage();
+			CurrentPage.NavigationService.Navigate(page);
+			CurrentPage = page;
+		}
+
+
+        public ICommand ChangeToParentConferencePage { get; }
+
+        private bool CanChangeToParentConferencePageExecute(object p)
+        {
+            return _CurrentPage is not ParentConferencePage;
+        }
+
+        private void OnChangeToParentConferencePageExecute(object p)
+        {
+            var page = _userDialog.GetParentConferencePage(); // Исправлено с GetDormitoryPage
+            CurrentPage.NavigationService.Navigate(page);
+            CurrentPage = page;
+        }
+
+        // Новые команды
+        public ICommand ChangeToClassHourPage { get; }
+        public ICommand ChangeToCharacteristicPage { get; }
+        public ICommand ChangeToHobiePage { get; }
+
+        private bool CanChangeToClassHourPageExecute(object p)
+            => _CurrentPage is not ClassHourPage;
+
+        private void OnChangeToClassHourPageExecute(object p)
+        {
+            var page = _userDialog.GetClassHourPage();
+            CurrentPage.NavigationService.Navigate(page);
+            CurrentPage = page;
+        }
+
+        private bool CanChangeToCharacteristicPageExecute(object p)
+            => _CurrentPage is not CharacteristicPage;
+
+        private void OnChangeToCharacteristicPageExecute(object p)
+        {
+            var page = _userDialog.GetCharacteristicPage();
+            CurrentPage.NavigationService.Navigate(page);
+            CurrentPage = page;
+        }
+
+        private bool CanChangeToHobiePageExecute(object p)
+            => _CurrentPage is not HobiePage;
+
+        private void OnChangeToHobiePageExecute(object p)
+        {
+            var page = _userDialog.GetHobiePage();
+            CurrentPage.NavigationService.Navigate(page);
+            CurrentPage = page;
+        }
+
+
+        #endregion
 
 
 
-		#region Конструкторы
-		private IUserDialog _userDialog;
+        #region Конструкторы
+        private IUserDialog _userDialog;
         public MentorMainWindowViewModel(IUserDialog userDialog)
         {
             _userDialog = userDialog;
 			_CurrentPage = _userDialog.GetProfilePage();
             ChangePageToProfile = new LambdaCommand(OnChangePageToProfileExecute, CanChangePageToProfileExecute);
 			ChangeToSocialPassportPage = new LambdaCommand(OnChangeToSocialPassportPageExecute, CanChangeToSocialPassportPageExecute);
-		}
+			ChangeToDormitoryPage = new LambdaCommand(OnChangeToDormitoryPageExecute, CanChangeToDormitoryPageExecute);
+            ChangeToParentConferencePage = new LambdaCommand(OnChangeToParentConferencePageExecute, CanChangeToParentConferencePageExecute);
+            ChangeToClassHourPage = new LambdaCommand(OnChangeToClassHourPageExecute, CanChangeToClassHourPageExecute);
+            ChangeToCharacteristicPage = new LambdaCommand(OnChangeToCharacteristicPageExecute, CanChangeToCharacteristicPageExecute);
+            ChangeToHobiePage = new LambdaCommand(OnChangeToHobiePageExecute, CanChangeToHobiePageExecute);
+        }
         public MentorMainWindowViewModel() { }
         #endregion
     }
