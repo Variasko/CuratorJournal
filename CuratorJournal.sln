@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CuratorJournal.Desktop", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CuratorJournal.DataAccess", "CuratorJournal.DataAccess\CuratorJournal.DataAccess.csproj", "{936B1A9E-3E1C-6F7D-B13E-B8325AB39630}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CuratorJournal.Api", "CuratorJournal.Api\CuratorJournal.Api.csproj", "{EF24CF9B-32CF-4EBF-968C-E469F76F6367}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,18 @@ Global
 		{936B1A9E-3E1C-6F7D-B13E-B8325AB39630}.Release|x64.Build.0 = Release|Any CPU
 		{936B1A9E-3E1C-6F7D-B13E-B8325AB39630}.Release|x86.ActiveCfg = Release|Any CPU
 		{936B1A9E-3E1C-6F7D-B13E-B8325AB39630}.Release|x86.Build.0 = Release|Any CPU
+		{EF24CF9B-32CF-4EBF-968C-E469F76F6367}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF24CF9B-32CF-4EBF-968C-E469F76F6367}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF24CF9B-32CF-4EBF-968C-E469F76F6367}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{EF24CF9B-32CF-4EBF-968C-E469F76F6367}.Debug|x64.Build.0 = Debug|Any CPU
+		{EF24CF9B-32CF-4EBF-968C-E469F76F6367}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EF24CF9B-32CF-4EBF-968C-E469F76F6367}.Debug|x86.Build.0 = Debug|Any CPU
+		{EF24CF9B-32CF-4EBF-968C-E469F76F6367}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF24CF9B-32CF-4EBF-968C-E469F76F6367}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF24CF9B-32CF-4EBF-968C-E469F76F6367}.Release|x64.ActiveCfg = Release|Any CPU
+		{EF24CF9B-32CF-4EBF-968C-E469F76F6367}.Release|x64.Build.0 = Release|Any CPU
+		{EF24CF9B-32CF-4EBF-968C-E469F76F6367}.Release|x86.ActiveCfg = Release|Any CPU
+		{EF24CF9B-32CF-4EBF-968C-E469F76F6367}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
