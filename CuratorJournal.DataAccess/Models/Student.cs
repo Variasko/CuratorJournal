@@ -7,9 +7,9 @@ public partial class Student
 {
     public int StudentId { get; set; }
 
-    public bool? IsExpelled { get; set; }
+    public bool? IsDeduction { get; set; }
 
-    public DateOnly? DateAdmission { get; set; }
+    public DateOnly DateDeduction { get; set; }
 
     public virtual ICollection<CuratorCharacteristic> CuratorCharacteristics { get; set; } = new List<CuratorCharacteristic>();
 

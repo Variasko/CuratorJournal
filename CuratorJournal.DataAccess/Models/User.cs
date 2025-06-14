@@ -7,13 +7,11 @@ public partial class User
 {
     public int UserId { get; set; }
 
-    public int CuratorId { get; set; }
-
     public string Login { get; set; } = null!;
 
-    public string PasswordHash { get; set; } = null!;
+    public string Password { get; set; } = null!;
 
     public bool IsAdmin { get; set; }
 
-    public virtual Curator Curator { get; set; } = null!;
+    public virtual ICollection<Curator> Curators { get; set; } = new List<Curator>();
 }

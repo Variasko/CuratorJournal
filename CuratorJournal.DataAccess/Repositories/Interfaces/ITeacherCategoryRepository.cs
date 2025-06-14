@@ -3,7 +3,7 @@ using CuratorJournal.DataAccess.Repositories.Interfaces.Base;
 
 namespace CuratorJournal.DataAccess.Repositories.Interfaces
 {
-    public interface ITeacherCategoryRepository : IBaseRepository<TeacherCategory>
+    public interface ITeacherCategoryRepository : IRepositoryBase<TeacherCategory>
     {
     }
 }

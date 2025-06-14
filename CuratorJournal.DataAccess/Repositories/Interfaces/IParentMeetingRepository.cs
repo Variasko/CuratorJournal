@@ -3,7 +3,7 @@ using CuratorJournal.DataAccess.Repositories.Interfaces.Base;
 
 namespace CuratorJournal.DataAccess.Repositories.Interfaces
 {
-    public interface IParentMeetingRepository : IBaseRepository<ParentMeeting>
+    public interface IParentMeetingRepository : IRepositoryBase<ParentMeeting>
     {
     }
 }

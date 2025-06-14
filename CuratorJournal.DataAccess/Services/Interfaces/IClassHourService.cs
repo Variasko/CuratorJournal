@@ -3,8 +3,7 @@ using CuratorJournal.DataAccess.Services.Interfaces.Base;
 
 namespace CuratorJournal.DataAccess.Services.Interfaces
 {
-    public interface IClassHourService : IBaseService<ClassHour>
+    public interface IClassHourService : IServiceBase<ClassHour>
     {
-        
     }
 }

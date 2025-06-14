@@ -3,7 +3,7 @@ using CuratorJournal.DataAccess.Repositories.Interfaces.Base;
 
 namespace CuratorJournal.DataAccess.Repositories.Interfaces
 {
-    public interface ICuratorCharacteristicRepository : IBaseRepository<CuratorCharacteristic>
+    public interface ICuratorCharacteristicRepository : IRepositoryBase<CuratorCharacteristic>
     {
     }
 }

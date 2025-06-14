@@ -31,7 +31,7 @@ public partial class Person
 
     public string Email { get; set; } = null!;
 
-    public virtual Curator? Curator { get; set; }
+    public virtual ICollection<Curator> Curators { get; set; } = new List<Curator>();
 
     public virtual Student? Student { get; set; }
 }

@@ -3,8 +3,7 @@ using CuratorJournal.DataAccess.Services.Interfaces.Base;
 
 namespace CuratorJournal.DataAccess.Services.Interfaces
 {
-    public interface ICuratorCharacteristicService : IBaseService<CuratorCharacteristic>
+    public interface ICuratorCharacteristicService : IServiceBase<CuratorCharacteristic>
     {
-        
     }
 }

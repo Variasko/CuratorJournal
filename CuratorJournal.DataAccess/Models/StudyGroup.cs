@@ -7,11 +7,11 @@ public partial class StudyGroup
 {
     public int StudyGroupId { get; set; }
 
-    public string DirectionAbbreviation { get; set; } = null!;
+    public string SpecificationAbbreviation { get; set; } = null!;
 
-    public string? SpecializationAbbreviation { get; set; }
+    public string? QualificationAbbreviation { get; set; }
 
-    public int? Course { get; set; }
+    public int Course { get; set; }
 
     public DateOnly DateCreate { get; set; }
 
@@ -19,13 +19,11 @@ public partial class StudyGroup
 
     public string? FullName { get; set; }
 
-    public bool IsStudyComplieted { get; set; }
-
-    public virtual Direction DirectionAbbreviationNavigation { get; set; } = null!;
-
     public virtual ICollection<ParentMeeting> ParentMeetings { get; set; } = new List<ParentMeeting>();
 
-    public virtual Specialization? SpecializationAbbreviationNavigation { get; set; }
+    public virtual Qualification? QualificationAbbreviationNavigation { get; set; }
+
+    public virtual Specification SpecificationAbbreviationNavigation { get; set; } = null!;
 
     public virtual ICollection<Curator> Curators { get; set; } = new List<Curator>();
 
