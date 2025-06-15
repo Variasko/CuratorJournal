@@ -54,5 +54,6 @@ namespace CuratorJournal.Api.Controllers.Base
             var property = typeof(T).GetProperty("Id");
             return property != null ? (int)property.GetValue(entity)! : -1;
         }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using CuratorJournal.Desktop.Infrastructure.Services;
+﻿using CuratorJournal.Desktop.ApiConnectors;
+using CuratorJournal.Desktop.Infrastructure.Services;
 using CuratorJournal.Desktop.Infrastructure.Services.Implementation;
 using CuratorJournal.Desktop.ViewModels;
 using CuratorJournal.Desktop.Views.Pages;
@@ -13,6 +14,7 @@ public static class ServiceRegistrar
     {
         return services
             .RegisterCoreServices()
+            .RegisterConnectors()
             .RegisterViewModels()
             .RegisterWindows()
             .RegisterPages()
@@ -23,6 +25,11 @@ public static class ServiceRegistrar
     {
         services.AddSingleton<IUserDialog, UserDialogService>();
         services.AddSingleton<IDialogService, DialogService>();
+        return services;
+    }
+    private static IServiceCollection RegisterConnectors(this IServiceCollection services)
+    {
+        services.AddSingleton<UserConnector>();
         return services;
     }
 

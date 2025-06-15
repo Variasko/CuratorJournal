@@ -33,5 +33,10 @@ namespace CuratorJournal.Desktop.ApiConnectors
         {
             await DeleteAsync(Endpoint + $"/{id}");
         }
+        public async Task<UserResponse> LoginAsync(string login, string password)
+        {
+            var endpoint = $"{Endpoint}/Auth?login={login}&password={password}";
+            return await PostAsync<object, UserResponse>(endpoint, null);
+        }
     }
 }
