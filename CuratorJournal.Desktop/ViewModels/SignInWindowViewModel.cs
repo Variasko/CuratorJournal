@@ -1,6 +1,8 @@
-﻿using CuratorJournal.Desktop.Helpers;
+﻿using CuratorJournal.Desktop.ApiConnectors;
+using CuratorJournal.Desktop.Helpers;
 using CuratorJournal.Desktop.Infrastructure.Commands;
 using CuratorJournal.Desktop.Infrastructure.Services;
+using CuratorJournal.Desktop.Infrastructure.Session;
 using CuratorJournal.Desktop.Models.Settings;
 using CuratorJournal.Desktop.ViewModels.Base;
 using System.Collections.ObjectModel;
@@ -103,19 +105,43 @@ namespace CuratorJournal.Desktop.ViewModels
             return !(string.IsNullOrEmpty(_login) && string.IsNullOrEmpty(_password));
         }
 
-        private void OnSignInCommandExecute(object parameter)
+        private async void OnSignInCommandExecute(object parameter)
         {
-            /* TODO Доделать эндпоинт авторизации */
-            _userDialog.OpenMentorMainWindow();
+            if (string.IsNullOrEmpty(Login) || string.IsNullOrEmpty(Password))
+                return;
+
+            try
+            {
+                var user = await _userConnector.LoginAsync(Login, Password);
+
+                if (user != null)
+                {
+                    // Сохраним пользователя, например, в статическом контейнере или передадим в VM
+                    CurrentSession.User = user;
+
+                    // Открываем главное окно
+                    _userDialog.OpenMentorMainWindow();
+                }
+                else
+                {
+                    // Можно показать сообщение об ошибке
+                    System.Windows.MessageBox.Show("Неверный логин или пароль");
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show($"Ошибка авторизации: {ex.Message}");
+            }
         }
 
         #endregion
 
         #region Конструктор
-        public SignInWindowViewModel(IUserDialog userDialog)
+        public SignInWindowViewModel(IUserDialog userDialog, UserConnector userConnector)
         {
             SignInCommand = new LambdaCommand(OnSignInCommandExecute, CanSignInCommandExecute);
             _userDialog = userDialog;
+            _userConnector = userConnector;
 
             #region Локализация
             // Инициализация языков
@@ -132,6 +158,7 @@ namespace CuratorJournal.Desktop.ViewModels
         public SignInWindowViewModel() { }
 
         private readonly IUserDialog _userDialog;
+        private readonly UserConnector _userConnector;
         #endregion
 
         #region Функции не для View
